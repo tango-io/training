@@ -32,6 +32,7 @@ class TicTacToe
 
   def winner?
     if @winner_combinations.include? @user1_movements
+    end
   end
 
 end
