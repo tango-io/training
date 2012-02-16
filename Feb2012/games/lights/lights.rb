@@ -1,6 +1,6 @@
 require 'matrix'
 
-class Lines
+class Lights
 
   attr_accessor :canvas
 
