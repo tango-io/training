@@ -19,8 +19,9 @@ function EulerProblem1(total) {
     }
   }
   var final = fv.length;
-  console.log("El vector final es de: " + final);
-  console.log("La sumatoria es de: " + sum);
+  console.log("El rango utilizado es: 1 a " + total + ".");
+  console.log("El vector final es de: " + final + ".");
+  console.log("La sumatoria es de: " + sum + ".");
 }
 
 EulerProblem1(1000);
