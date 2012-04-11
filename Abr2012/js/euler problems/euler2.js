@@ -7,3 +7,24 @@
 // By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
 // 
 // https://projecteuler.net/problem=2
+
+var x=1,
+    y=2,
+    r=0,
+    sum=0,
+    ban=0;
+
+function contador(max){
+  while (r<max){
+    r=x+y;
+    x=y;  
+    y=r;
+    if (r % 2==0){
+      sum=sum+r;
+    }
+  }
+  sum=sum+2;
+  console.log(sum)
+}
+
+contador(4000000);
