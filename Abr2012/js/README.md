@@ -8,3 +8,4 @@
 
 ##Advanced
 * [Javascript Constructors and Prototypes](http://tobyho.com/2010/11/22/javascript-constructors-and/)
+* [More Excercises](http://www.ynonperek.com/javascript-exer.html)
