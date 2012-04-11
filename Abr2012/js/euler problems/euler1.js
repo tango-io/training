@@ -7,15 +7,21 @@
 // https://projecteuler.net/problem=1
 //
 
-function EulerProblem1() {
-  var total = 10, v = [];
-  for (var cont=1; cont<=total; cont++){
+function EulerProblem1(total) {
+  var sum = 0, v = [], fv = [];
+  for (var cont=1; cont<=total-1; cont++){
     v.push(cont);
   }
-  for (var cont=1; cont<=total; cont++){
-    console.log("Espacio del vector ["+cont+"] es: "+v[cont-1]);
+  for (var cont=0; cont<=total-1; cont++){
+    if (((v[cont] % 3) == 0) || ((v[cont] % 5) == 0)) {
+      fv.push(v[cont]);
+      sum = sum + v[cont];
+    }
   }
+  var final = fv.length;
+  console.log("El vector final es de: " + final);
+  console.log("La sumatoria es de: " + sum);
 }
 
-EulerProblem1();
+EulerProblem1(1000);
 
