@@ -35,7 +35,9 @@
 var str='Le dije a mi mamá que si tengo muerte cerebral y vivo a base de maquinas mejor me desconectara. Ella se levantó y desconectó el internet',
     con=0,
     cont=0,
-    vec=[];
+    x=0,
+    vec=[],
+    aux=[];
 
 function count(arr2){
   for (var j=0;j<=arr2.length;j++){
@@ -48,29 +50,22 @@ function count(arr2){
       con=0;
     }
   }
-  console.log(cont +' uniq letters')
+  console.log(cont-1 +' uniq letters')
 }    
+
 function clean(arr){
-  for (var i=0;i<=arr.length;i++){
-    if (arr[i]==" " || arr[i]=="," || arr[i]=="."){
-      delete arr[i];
-    }
-  }
+  for (var i=0;i<=arr.length;i++)  if (arr[i]==" " || arr[i]=="," || arr[i]==".") delete arr[i];
   count(arr);
 }
 
-//function change(a, con){
-  //for (var i; i==a.lenght;i++){
-    //b=a[i].toString()
-    //b=b.replace('Á','A');
-    //b=b.replace('É','E');
-    //b=b.replace('Í','I');
-    //b=b.replace('Ó','O');
-    //b=b.replace('Ú','U');
-    //con=con+b;
-  //}
-    //console.log(con);
-//}
+function change(a){
+  a=a.replace(/á/gi,"a");
+  a=a.replace(/é/gi,"e");
+  a=a.replace(/í/gi,"i");
+  a=a.replace(/ó/gi,"o");
+  a=a.replace(/ú/gi,"u");
+  aux=a.toUpperCase().split("").sort();
+  clean(aux);
+}
 
-vec=str.toUpperCase().split("").sort();
-clean(vec);
+change(str);
