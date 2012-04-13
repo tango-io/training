@@ -17,8 +17,9 @@ function EulerProblem20(number){
   }
   chain = fac.toString();
   for (cont = 0; cont <= chain.length-1; cont++){
-    v[cont] = parseInt(chain.charAt(cont));
+    v[cont] = parseFloat(chain.charAt(cont));
     sum = sum + v[cont];
+    //console.log(v[cont]);
   }
   console.log("The factorial of " + number + "! is : " + chain + ".");
   console.log("The sum of each elements of " + number + "! is: " + sum + ".");

@@ -30,3 +30,22 @@
 //       Y :: 2
 //       ------
 //       19 uniq letters
+//
+
+function deadbrain(){
+  var vec = [], v = [], fv = [], chain = "Le dije a mi mamá que si tengo muerte cerebral y vivo a base de maquinas mejor me desconectara. Ella se levantó y desconectó el internet.";
+  vec = (chain.toLowerCase()).split(".");
+  var size = vec.length;
+  for (cont = 0; cont <= size-1; cont++){
+    v[cont] = vec[cont].split(" ");
+  }
+  size = v.length;
+  //for (cont = 0; cont <= size-1; cont++){
+    //fv = v[cont].split("");
+  //}
+  console.log(vec[0]);
+  console.log(v[0]);
+  console.log(fv[0]);
+}
+
+deadbrain();
