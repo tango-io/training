@@ -32,20 +32,52 @@
 //       19 uniq letters
 //
 
-function deadbrain(){
-  var vec = [], v = [], fv = [], chain = "Le dije a mi mamá que si tengo muerte cerebral y vivo a base de maquinas mejor me desconectara. Ella se levantó y desconectó el internet.";
-  vec = (chain.toLowerCase()).split(".");
-  var size = vec.length;
-  for (cont = 0; cont <= size-1; cont++){
-    v[cont] = vec[cont].split(" ");
+function deadbrain(chain){
+  var vec = [], 
+  vec = (chain.toLowerCase()).split("");
+  for (var cont = 0; cont <= vec.length; cont++){
+    if ((vec[cont] == ".") || (vec[cont] == " ")){
+      delete vec[cont];
+    }
   }
-  size = v.length;
-  //for (cont = 0; cont <= size-1; cont++){
-    //fv = v[cont].split("");
-  //}
-  console.log(vec[0]);
-  console.log(v[0]);
-  console.log(fv[0]);
+  for (var cont = 0; cont <= vec.length; cont++){
+    switch (vec[cont])
+    {
+        case "á" :
+          vec.splice(cont, 1, "a");
+          break;
+        case "é" :
+          vec.splice(cont, 1, "e");
+          break;
+        case "í" :
+          vec.splice(cont, 1, "i");
+          break;
+        case "ó" :
+          vec.splice(cont, 1, "o");
+          break;
+        case "ú" :
+          vec.splice(cont, 1, "u");
+          break;
+
+    }
+  }
+  var conta = 0, tlet = 0;
+  vec.sort();
+  for (var cont = 0; cont <= vec.length; cont++){
+    if (vec[cont] == vec[cont+1])
+      conta = conta + 1;
+    else {
+      conta = conta + 1;
+      console.log(vec[cont].toUpperCase() + " :: " + conta);
+      conta = 0;
+      tlet = tlet + 1;
+    }
+  }
+
+  console.log("---------------------------");
+  console.log("The uniq letters are: " + tlet + ".");
 }
 
-deadbrain();
+var chain = "Le dije a mi mamá que si tengo muerte cerebral y vivo a base de maquinas mejor me desconectara. Ella se levantó y desconectó el internet.";
+//var chain = "No mames, Is it works with this string?...";
+deadbrain(chain);
