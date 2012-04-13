@@ -56,7 +56,7 @@ function clean(arr){
       delete arr[i];
     }
   }
-  change(arr);
+  count(arr);
 }
 
 //function change(a, con){
