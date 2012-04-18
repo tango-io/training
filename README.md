@@ -9,7 +9,7 @@
 
 Books you **Must Read**
 
-* [Javascript: The Good Parts]("books/Javascript_the_good_parts.pdf")
+* [Javascript: The Good Parts](books/Javascript_the_good_parts.pdf)
 * [Object-Oriented JavaScript](books/Object-Oriented_JavaScript[Jul2008].pdf)
 * [Professional JavaScript for Web Developers](books/Professional_javascript_for_web_developers[3rd_edition].pdf)
 * [Javascript, The Definitive Guide](books/Oreilly.JavaScript_The_Definitive_Guide[6th_Edition][Apr2011].pdf)
