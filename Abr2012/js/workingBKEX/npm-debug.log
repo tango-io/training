@@ -1,0 +1,24 @@
+info it worked if it ends with ok
+verbose cli [ 'node', '/home/victor/.nvm/v0.6.8/bin/npm', 'install', '-d' ]
+info using npm@1.1.0-2
+info using node@v0.6.8
+verbose config file /home/victor/.npmrc
+verbose config file /home/victor/.nvm/v0.6.8/etc/npmrc
+verbose config file /home/victor/.nvm/v0.6.8/lib/node_modules/npm/npmrc
+ERR! Couldn't read dependencies.
+ERR! Error: ENOENT, no such file or directory '/home/victor/package.json'
+ERR! You may report this log at:
+ERR!     <http://github.com/isaacs/npm/issues>
+ERR! or email it to:
+ERR!     <npm-@googlegroups.com>
+ERR! 
+ERR! System Linux 3.0.0-17-generic
+ERR! command "node" "/home/victor/.nvm/v0.6.8/bin/npm" "install" "-d"
+ERR! cwd /home/victor/worksJS/training/Abr2012/js/workingBKEX
+ERR! node -v v0.6.8
+ERR! npm -v 1.1.0-2
+ERR! path /home/victor/package.json
+ERR! code ENOENT
+ERR! message ENOENT, no such file or directory '/home/victor/package.json'
+ERR! errno {}
+verbose exit [ 1, true ]
