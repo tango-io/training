@@ -13,3 +13,11 @@ exports.index = function(req, res){
 exports.edit = function(req, res){
   res.render('edit', { title: 'Edit' })
 };
+
+/*
+ * GET show page.
+ */
+
+exports.show = function(req, res){
+  res.render('show', { title: 'Show' })
+};
