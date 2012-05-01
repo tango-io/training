@@ -1,11 +1,15 @@
 !!!
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap.css')
-    script(src='javascripts/libs/jQuery.js')
-    script(src='javascripts/libs/underscore.js')
-    script(src='javascripts/libs/backbone.js')
-    script(src='javascripts/libs/bootstrap.js')     
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/libs/jQuery.js')
+    script(src='/javascripts/libs/underscore.js')
+    script(src='/javascripts/libs/backbone.js')
+    script(src='/javascripts/libs/bootstrap.js')     
+
+    script(src='/javascripts/main.js')    
+    script(src='/javascripts/router.js')    
+    script(src='/javascripts/app/views/indexView.js')
+    script(src='/javascripts/app/views/editView.js')
   body!= body

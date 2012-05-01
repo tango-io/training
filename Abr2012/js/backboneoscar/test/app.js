@@ -4,11 +4,15 @@
  */
 
 var express = require('express')
-  , routes = require('./routes');
+  , routes = require('./routes')
+  , RedisStore = require('connect-redis')(express)
+  , connect = require('connect');
 
 var app = module.exports = express.createServer();
 
 // Configuration
+  redisdb = require('redis');
+  redis = redisdb.createClient();
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
@@ -30,7 +34,14 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
-app.get ('/edit',routes.edit);
+app.get ('/edit/:id',routes.edit);
+
+app.post('/getData', function(req, res){
+  var data = JSON.stringify(req.body);
+  redis.set('data', data, redis.print);
+  res.send(true);
+});
+
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });

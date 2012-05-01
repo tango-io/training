@@ -4,10 +4,10 @@ div#container
   .conten_registro
     .page_input_floatleft
       label='nombre'
-      input.new_page()
+      input#username.new_page()
     h1 &
     .page_imput_floatright
       label='Password'
-      input.new_page(name='password')
-    input.btn(type="button", value="Publish your page")
+      input#password.new_page(type="password", name='password')
+  input#btn(type="button", value="Publish your page")
 

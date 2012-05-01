@@ -1,4 +1,8 @@
+html {
+  height: 100%;
+}
 body {
+  min-height: 100%;
   background-color: #fff8e3;
 }
 h1 {
@@ -17,6 +21,12 @@ h2 {
   float: right;
   width: 215px;
 }
+.conten_registro h1 {
+  text-align: center;
+  color: #256075;
+  margin: 24px 229px -61px 22px;
+  float: left;
+}
 .new_page {
   background: white;
   width: 123px;
@@ -26,6 +36,7 @@ h2 {
   padding: 0 70px 0 20px;
   color: #5A646A;
   border-radius: 5px;
+  float: right;
   border-image: initial;
 }
 label {
@@ -36,10 +47,7 @@ label {
   text-align: center;
   font-size: 11px;
 }
-.conten_registro h1 {
-  float: left;
-}
-.btn {
+input#btn {
   height: 39px;
   width: 500px;
 }
