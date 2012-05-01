@@ -3,7 +3,7 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Eddity' })
+  res.render('index', { title: 'Editty' })
 };
 
 /*
@@ -11,7 +11,11 @@ exports.index = function(req, res){
  */
 
 exports.edit = function(req, res){
-  res.render('edit', { title: 'Edit' })
+  var id = req.params.id;
+  redis.get('data', function(err, data){
+    console.log(data);
+    res.render('edit', JSON.parse(data))
+  });
 };
 
 /*
@@ -19,5 +23,5 @@ exports.edit = function(req, res){
  */
 
 exports.show = function(req, res){
-  res.render('show', { title: 'Show' })
+  res.render('show', { title: 'Show'})
 };
