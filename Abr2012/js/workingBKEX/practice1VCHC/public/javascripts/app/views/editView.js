@@ -24,6 +24,10 @@ Editty.View.Edit = Backbone.View.extend({
       $('h1').remove();
       $('#title').append('<input id="incont" maxlength="25"></input>');
       $('#incont').focus();
+      //if ($('#incont') != $('#incont').focus()){
+        //$('#title').append('<h1>'+ titlesaver +'</h2>');
+        //$('#incont').remove();
+      //}
     }
   },
   
