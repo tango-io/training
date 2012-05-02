@@ -6,7 +6,7 @@ Editty.View.Index = Backbone.View.extend({
   },
 
   initialize: function(){
-    this.users = {id: 0, filename:"", pass:"", title:"", contenText:""};
+    this.users = {id: 0, file_name:"", pass:"", title:"", contenText:""};
   },
 
   edit: function(e){
@@ -14,8 +14,9 @@ Editty.View.Index = Backbone.View.extend({
     var file = $('#username').val(),
         password = $('#password').val();
         id = 1;
+        console.log(file);
         
-        this.users.filename = file;
+        this.users.file_name = file;
         this.users.pass     = password;
         this.users.id       = id;
 
