@@ -2,9 +2,10 @@ Editty.View.Edit = Backbone.View.extend({
   el: 'body',
   
   events: {
-    'click #title'    : 'edittitle', 
+    'click #title.static'    : 'edittitle', 
     'click #content'  : 'editcontent',
-    'keydown #incont' : 'puttitle',
+    'keydown #title'  : 'puttitle',
+    'blur #title input'  : 'onFocusOut',
     'keydown #incont2': 'putcont'
   
   },
@@ -18,35 +19,42 @@ Editty.View.Edit = Backbone.View.extend({
   },
   
   edittitle: function(){
-    this.conta = this.conta + 1;
-    if (this.conta == 1){
-      var titlesaver = $('h1').text();
-      $('h1').remove();
-      $('#title').append('<input id="incont" maxlength="25"></input>');
-      $('#incont').focus();
-      //if ($('#incont') != $('#incont').focus()){
-        //$('#title').append('<h1>'+ titlesaver +'</h2>');
-        //$('#incont').remove();
-      //}
-    }
+    $('#title').toggleClass('static');
+    var title_input = $("<input>").val($('#title h1').text());
+
+    console.log(title_input);
+    $("#title h1").html(title_input);
+    $(title_input).focus();
   },
   
-  puttitle: function(){
-    var keycapture = $('#incont').val();
-    if ((event.keyCode == 13) && (keycapture != '')){
-      $('#title').append('<h1>'+ keycapture +'</h1>');
-      $('#incont').remove();
-    this.conta = 0;
+  puttitle: function(event){
+    if(event.keyCode===13) {
+      this.onFocusOut();
+    }
+    return event.keyCode!=13
+  },
+
+  onFocusOut: function(){
+    if (!$('#title').hasClass('static')) {
+      $('#title').toggleClass('static');
+      $("#title h1").html($('#title input').val());
     }
   },
 
   editcontent: function(){
     this.conta = this.conta + 1;
     if (this.conta == 1){
-      var contesaver = $('#bodytext').val();
+      var contesaver = $('#bodytext').text();
       $('#bodytext').remove();
       $('#content').append('<input id="incont2" maxlength="250"></input>');
       $('#incont2').focus();
+      $('#incont2').focusout(function(){
+        console.log('inside2');
+        $('#content').append('<p id="bodytext">'+ contesaver + '</p>');
+        $('#incont2').remove();
+        this.conta = 0;
+        console.log(this.conta);
+       });
     }
   },
 
@@ -57,5 +65,6 @@ Editty.View.Edit = Backbone.View.extend({
       $('#incont2').remove();
     this.conta = 0;
     }
-  }
+  },
+
 });

@@ -1,7 +1,7 @@
 Editty.Router = Backbone.Router.extend({
   routes: {
     ""          : "index",
-    "edit/:id" : "edit",
+    "edit/:id"  : "edit",
     "/show/:id" : "show"
   },
 
