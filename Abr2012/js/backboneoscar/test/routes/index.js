@@ -6,6 +6,7 @@
 exports.index = function(req, res){
   res.render('index', { title: 'Editty' })
 };
+
 exports.edit = function(req, res){
   var id = req.params.id;
   redis.get ('data', function(err, data){
