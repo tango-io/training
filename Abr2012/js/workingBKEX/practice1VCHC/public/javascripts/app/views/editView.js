@@ -3,10 +3,11 @@ Editty.View.Edit = Backbone.View.extend({
   
   events: {
     'click #title.static'    : 'edittitle', 
-    'click #content'  : 'editcontent',
-    'keydown #title'  : 'puttitle',
-    'blur #title input'  : 'onFocusOut',
-    'keydown #incont2': 'putcont'
+    'click #content.static'  : 'editcontent',
+    'keydown #title'         : 'puttitle',
+    'keydown #incont2'       : 'putcont',
+    'blur #title input'      : 'onFocusOut',
+    'blur #content input'    : 'onFocusOut2'
   
   },
   
@@ -21,8 +22,6 @@ Editty.View.Edit = Backbone.View.extend({
   edittitle: function(){
     $('#title').toggleClass('static');
     var title_input = $("<input>").val($('#title h1').text());
-
-    console.log(title_input);
     $("#title h1").html(title_input);
     $(title_input).focus();
   },
@@ -34,6 +33,20 @@ Editty.View.Edit = Backbone.View.extend({
     return event.keyCode!=13
   },
 
+  editcontent: function(){
+    $('#content').toggleClass('static');
+    var content_input = $("<input>").val($('#bodytext').text());
+    $("#bodytext").html(content_input);
+    $(content_input).focus();
+  },
+
+  putcont: function(){
+    if(event.keyCode===13) {
+      this.onFocusOut2();
+    }
+    return event.keyCode!=13
+  },
+
   onFocusOut: function(){
     if (!$('#title').hasClass('static')) {
       $('#title').toggleClass('static');
@@ -41,30 +54,10 @@ Editty.View.Edit = Backbone.View.extend({
     }
   },
 
-  editcontent: function(){
-    this.conta = this.conta + 1;
-    if (this.conta == 1){
-      var contesaver = $('#bodytext').text();
-      $('#bodytext').remove();
-      $('#content').append('<input id="incont2" maxlength="250"></input>');
-      $('#incont2').focus();
-      $('#incont2').focusout(function(){
-        console.log('inside2');
-        $('#content').append('<p id="bodytext">'+ contesaver + '</p>');
-        $('#incont2').remove();
-        this.conta = 0;
-        console.log(this.conta);
-       });
+  onFocusOut2: function(){
+    if (!$('#content').hasClass('static')) {
+      $('#content').toggleClass('static');
+      $("#bodytext").html($('#content input').val());
     }
-  },
-
-  putcont: function(){
-    var keycapture = $('#incont2').val();
-    if ((event.keyCode == 13) && (keycapture != '')){
-      $('#content').append('<p id="bodytext">'+ keycapture +'</p>');
-      $('#incont2').remove();
-    this.conta = 0;
-    }
-  },
-
+  }
 });
