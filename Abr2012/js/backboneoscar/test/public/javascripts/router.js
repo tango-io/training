@@ -1,11 +1,15 @@
 Editty.Router = Backbone.Router.extend({
   routes: {
-    "" : "index",
+
+    ""          : "index",
     "/edit/:id" : "edit",
-    "/show/:id" : "show"
+
   },
+
   initialize: function(){
-    console.log(this.routes);
+    if(window.location.pathname.match('edit')){
+      this.edit();
+    };
   },
   index: function(){
     var index = new Editty.View.Index();
@@ -15,7 +19,4 @@ Editty.Router = Backbone.Router.extend({
     var edit = new Editty.View.Edit();
   },
 
-  show: function(id){
-    var show = new Editty.View.Show();
-  }
 })

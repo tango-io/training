@@ -1,11 +1,11 @@
 Editty={
   Model: {},
-  Collections: {},
+  Collection: {},
   View: {},
 
   initialize: function(){
     Editty.router =new Editty.Router();
-    Backbone.history.start();
+    Backbone.history.start({pushState: true});
   }
 }
 
