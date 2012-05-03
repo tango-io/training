@@ -5,7 +5,7 @@ Editty.View.Edit = Backbone.View.extend({
     'click #title.static'    : 'edittitle', 
     'click #content.static'  : 'editcontent',
     'keydown #title'         : 'puttitle',
-    'keydown #incont2'       : 'putcont',
+    'keydown #content'       : 'putcont',
     'blur #title input'      : 'onFocusOut',
     'blur #content input'    : 'onFocusOut2'
   
@@ -13,7 +13,7 @@ Editty.View.Edit = Backbone.View.extend({
   
   initialize: function(){
     $('.nav').append('<li><a>'+window.location.href+'</a></li>');
-    this.conta = 0;
+    this.countingwords();
   },
 
   render: function(){
@@ -58,6 +58,14 @@ Editty.View.Edit = Backbone.View.extend({
     if (!$('#content').hasClass('static')) {
       $('#content').toggleClass('static');
       $("#bodytext").html($('#content input').val());
+      this.countingwords();
     }
+  },
+
+  countingwords: function(){
+    this.size = $('#bodytext').text();
+    this.words = this.size.split(' ');
+    $('.nav #words a').text("Words: " + this.words.length);
+    $('.nav #chars a').text("Characters: " + this.size.length);
   }
 });
