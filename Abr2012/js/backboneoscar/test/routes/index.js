@@ -13,4 +13,10 @@ exports.edit = function(req, res){
     console.log(data);
     res.render('edit', JSON.parse(data))
   });
+
+};
+
+exports.show = function(req, res){
+  console.log('sas');
+  res.render('show', { title: 'Editty' })
 };
