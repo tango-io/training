@@ -35,6 +35,7 @@ app.configure('production', function(){
 
 app.get('/', routes.index);
 app.get ('/edit/:id',routes.edit);
+app.get ('/show/:id',routes.show);
 
 app.post('/getData', function(req, res){
   var data = JSON.stringify(req.body);
