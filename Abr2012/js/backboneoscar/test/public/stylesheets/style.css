@@ -70,14 +70,24 @@ input#btn {
   margin-top: 70px;
   width: 700px;
   height: 110px;
-  border: 1px dashed;
   text-transform: uppercase;
   text-align: center;
 }
 .conten_web {
   margin: auto;
-  margin-top: 50px;
+  margin-top: 10px;
   width: 700px;
   height: 400px;
-  border: 1px dashed;
+}
+#main_text {
+  margin: 15px;
+}
+#contenChange {
+  margin: 15px;
+}
+#titulo {
+  margin: 15px;
+}
+#titleChange {
+  margin: 15px;
 }
