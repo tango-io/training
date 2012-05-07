@@ -14,6 +14,7 @@ Editty.View.Edit = Backbone.View.extend({
   initialize: function(){
     $('.nav').append('<li><a>'+window.location.href+'</a></li>');
     this.countingwords();
+    this.id = 1;
   },
 
   render: function(){
@@ -55,10 +56,25 @@ Editty.View.Edit = Backbone.View.extend({
   },
 
   onFocusOut2: function(){
+    self = this;
+
     if (!$('#content').hasClass('static')) {
       $('#content').toggleClass('static');
       $("#bodytext").html($('#content input').val());
       this.countingwords();
+      this.gettingData();
+      //$.ajax({
+        //type: 'POST',
+        //url:  '/gettingData',
+        //data: {id: 1}
+      //}).done(function(data){
+        //console.log(JSON.parse(data));
+        //var object = (JSON.parse(data));
+        //console.log(object.fnames);
+        //object.title = $('h1').text();
+        //object.content = $('#bodytext').text();
+        //console.log(object.title);
+      //});
     }
   },
 
@@ -67,5 +83,39 @@ Editty.View.Edit = Backbone.View.extend({
     this.words = this.size.split(' ');
     $('.nav #words a').text("Words: " + this.words.length);
     $('.nav #chars a').text("Characters: " + this.size.length);
+  },
+
+  gettingData: function(object){
+    $.ajax({
+      type: 'POST',
+      url:  '/gettingData',
+      data: {id: 1}
+    }).done(function(data){
+      console.log(JSON.parse(data));
+      var object = (JSON.parse(data));
+      console.log(object.fnames);
+      object.title = $('h1').text();
+      object.content = $('#bodytext').text();
+      console.log(object.title);
+      console.log(object.content);
+      //this.savingData(object);
+      $.ajax({
+        type: "POST",
+        url:  "/getData",
+        data: object
+      }).done(function(data){
+        console.log(data);
+      });
+    });
   }
+
+  //savingData: function(object){
+    //$.ajax({
+      //type: "POST",
+      //url:  "/getData",
+      //data: object
+    //}).done(function(data){
+      //console.log(data);
+    //});
+  //}
 });
