@@ -36,7 +36,7 @@ app.configure('development', function(){
   app.get('/', routes.index);
   app.get('/edit/:id', routes.edit);
   app.get('/show/:id', routes.show);
-  app.post('/getData', function(req, res){
+  app.post('/setData', function(req, res){
 
     var data = JSON.stringify(req.body);
     var id = req.body.id;
@@ -46,13 +46,12 @@ app.configure('development', function(){
     res.send(true);
   });
 
-  app.post('/gettingData', function(req, res){
+  app.post('/getData', function(req, res){
     var id = req.body.id;
     redis.get(id, function(err, data){
       res.send(data)
     });
   });
-
 
 
 app.listen(3000, function(){

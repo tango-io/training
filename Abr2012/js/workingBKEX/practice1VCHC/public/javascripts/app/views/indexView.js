@@ -6,7 +6,7 @@ Editty.View.Index = Backbone.View.extend({
   },
 
   initialize: function(){
-    this.container = {id: 0, fnames: "", passw: "", title:"", content:""};
+    this.container = {id: 0, fnames: "", passw: "", title:"Put your title here", content:"Click to write your file..."};
     this.error = false;
     $('#modalError').modal();
     $('#modalError').modal('hide');
@@ -25,7 +25,7 @@ Editty.View.Index = Backbone.View.extend({
 
       $.ajax({
         type: 'POST',
-        url: '/getData',
+        url: '/setData',
         data: this.container
       }).done(function(data){
         console.log(data);

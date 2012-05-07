@@ -7,17 +7,31 @@ Editty.View.Edit = Backbone.View.extend({
     'keydown #title'         : 'puttitle',
     'keydown #content'       : 'putcont',
     'blur #title input'      : 'onFocusOut',
-    'blur #content input'    : 'onFocusOut2'
+    'blur #content input'    : 'onFocusOut2',
   
   },
   
   initialize: function(){
+    this.info = {};
     $('.nav').append('<li><a>'+window.location.href+'</a></li>');
     this.countingwords();
     this.id = 1;
+    this.render();
   },
 
   render: function(){
+      var self = this;
+      console.log('Here');
+      $.ajax({
+        type: 'POST',
+        url:  '/getData',
+        data: {id: 1}
+      }).done(function(data){
+        var d = JSON.parse(data);
+        self.info = d;
+        $('h1').text(d.title);
+        $('#bodytext').text(d.content);
+      });
   },
   
   edittitle: function(){
@@ -62,19 +76,8 @@ Editty.View.Edit = Backbone.View.extend({
       $('#content').toggleClass('static');
       $("#bodytext").html($('#content input').val());
       this.countingwords();
-      this.gettingData();
-      //$.ajax({
-        //type: 'POST',
-        //url:  '/gettingData',
-        //data: {id: 1}
-      //}).done(function(data){
-        //console.log(JSON.parse(data));
-        //var object = (JSON.parse(data));
-        //console.log(object.fnames);
-        //object.title = $('h1').text();
-        //object.content = $('#bodytext').text();
-        //console.log(object.title);
-      //});
+      this.settingData();
+      this.prev
     }
   },
 
@@ -85,37 +88,19 @@ Editty.View.Edit = Backbone.View.extend({
     $('.nav #chars a').text("Characters: " + this.size.length);
   },
 
-  gettingData: function(object){
+  settingData: function(){
+    console.log(this.info);
+    this.info.title = $('h1').text();
+    this.info.content = $('#bodytext').text();
+    console.log('New');
+    console.log(this.info);
     $.ajax({
       type: 'POST',
-      url:  '/gettingData',
-      data: {id: 1}
+      url:  '/setData',
+      data: this.info
     }).done(function(data){
-      console.log(JSON.parse(data));
-      var object = (JSON.parse(data));
-      console.log(object.fnames);
-      object.title = $('h1').text();
-      object.content = $('#bodytext').text();
-      console.log(object.title);
-      console.log(object.content);
-      //this.savingData(object);
-      $.ajax({
-        type: "POST",
-        url:  "/getData",
-        data: object
-      }).done(function(data){
-        console.log(data);
-      });
+      console.log(data);
     });
-  }
+  },
 
-  //savingData: function(object){
-    //$.ajax({
-      //type: "POST",
-      //url:  "/getData",
-      //data: object
-    //}).done(function(data){
-      //console.log(data);
-    //});
-  //}
 });
