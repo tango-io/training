@@ -18,7 +18,7 @@ Editty.View.Edit = Backbone.View.extend({
   initialize: function(){
     var self =this
     this.user2= {};
-    $('.nav').append('<li><a>'+window.location.href+'</a></li>');
+    $('.nav').append('<li id="url"><a>'+window.location.href+'</a></li>');
     var cont = $('#main_text').text();
     $('#numChar').text('characters: '+cont.length);
     
