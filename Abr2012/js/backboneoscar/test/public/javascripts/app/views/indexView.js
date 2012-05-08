@@ -6,7 +6,7 @@ Editty.View.Index = Backbone.View.extend({
   },
 
   initialize: function(){
-    this.users = {id: 0, file_name:"", pass:"", title:"", contenText:""};
+    this.users = {id: 0, file_name:"", pass:"", title:"Hola", contenText:"Ingrese aqui su texto"};
   },
 
   edit: function(e){
@@ -22,9 +22,10 @@ Editty.View.Index = Backbone.View.extend({
 
     $.ajax({
       type: 'POST',
-      url: "/getData",
+      url: "/setData",
       data: this.users 
     }).done(function (data){
+      console.log(data);
     });
 
     window.location.pathname = '/edit/'+id

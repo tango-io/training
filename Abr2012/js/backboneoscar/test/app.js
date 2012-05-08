@@ -37,11 +37,22 @@ app.get('/', routes.index);
 app.get ('/edit/:id',routes.edit);
 app.get ('/show/:id',routes.show);
 
-app.post('/getData', function(req, res){
+app.post('/setData', function(req, res){
   var data = JSON.stringify(req.body);
-  redis.set('data', data, redis.print);
+  var id = req.body.id;
+  console.log('data');
+  console.log(data);
+  redis.set(id, data, redis.print);
   res.send(true);
 });
+
+app.post('/getData', function(req, res){
+  var id = req.body.id;
+  redis.get(id, function(err, data){
+    res.send(data);
+  })
+});
+
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

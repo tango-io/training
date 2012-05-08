@@ -5,7 +5,6 @@ Editty.View.Show = Backbone.View.extend({
   },
 
   initialize: function(){
-
   },
 
   render: function(){
