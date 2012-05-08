@@ -8,13 +8,15 @@ Editty.View.Edit = Backbone.View.extend({
     'keydown #content'       : 'putcont',
     'blur #title input'      : 'onFocusOut',
     'blur #content input'    : 'onFocusOut2',
+    'click #back'            : 'backindex',
+    'click #show'            : 'gotoshow'
   
   },
   
   initialize: function(){
     this.info = {};
     self = this;
-    $('.nav').append('<li><a>'+window.location.href+'</a></li>');
+    $('#root').append('<a>' + window.location.href + '</a>');
     this.countingwords();
     this.id = 1;
     this.render();
@@ -107,6 +109,14 @@ Editty.View.Edit = Backbone.View.extend({
     }).done(function(data){
       console.log(data);
     });
+  },
+
+  backindex: function(){
+    window.location.pathname = ""
+  },
+
+  gotoshow: function(){
+    window.location.pathname = "/show/"+this.id;
   }
 
 });

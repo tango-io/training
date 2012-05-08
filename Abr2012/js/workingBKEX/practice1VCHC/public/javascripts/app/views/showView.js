@@ -2,11 +2,14 @@ Editty.View.Show = Backbone.View.extend({
   el: "body",
 
   events:{
+    'click #save' : 'saveit',
+    'click #print': 'printit',
+    'click #edit' : 'backedit'
   
   },
 
   initialize: function(){
-    console.log('inside');
+    this.id = 1;
     $.ajax({
       type: 'POST',
       url:  '/getData',
@@ -16,6 +19,18 @@ Editty.View.Show = Backbone.View.extend({
       $('h1').text(newdata.title);
       $('#bodytext').text(newdata.content);
     });
+  },
+
+  saveit: function(){
+    
+  },
+
+  printit: function(){
+  
+  },
+
+  backedit: function(){
+    window.location.pathname = "/edit/"+this.id;
   }
 
 });
