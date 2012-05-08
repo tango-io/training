@@ -38,17 +38,18 @@ app.get ('/edit/:id',routes.edit);
 app.get ('/show/:id',routes.show);
 
 app.post('/setData', function(req, res){
-  var data = JSON.stringify(req.body);
-  var id = req.body.id;
-  console.log('data');
-  console.log(data);
-  redis.set(id, data, redis.print);
-  res.send(true);
+  var data = req.body;
+
+  redis.set(data.name, JSON.stringify(data), redis.print);
+  res.send({
+    name: data.name,
+    success: true
+  });
 });
 
 app.post('/getData', function(req, res){
-  var id = req.body.id;
-  redis.get(id, function(err, data){
+  var d = req.body;
+  redis.get(d.name, function(err, data){
     res.send(data);
   })
 });

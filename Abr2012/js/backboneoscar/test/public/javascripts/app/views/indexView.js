@@ -6,28 +6,55 @@ Editty.View.Index = Backbone.View.extend({
   },
 
   initialize: function(){
-    this.users = {id: 0, file_name:"", pass:"", title:"Hola", contenText:"Ingrese aqui su texto"};
+  },
+
+  getFile: function(name, cb){
+    $.ajax({
+      type: "POST",
+      url: "/getData",
+      data: {name: name}
+    }).done(function(file){
+      return cb(file);
+    });
+  },
+
+  createFile: function(file){
+    $.ajax({
+      type: "POST",
+      url: "/setData",
+      data: file
+    }).done(function(data){
+      if(data.success){
+        console.log('Done');
+        window.location.pathname = '/edit/'+data.name
+      }
+    }).error(function(err){
+      alert(JSON.stringify(err));
+    });
   },
 
   edit: function(e){
     e.preventDefault();
-    var file = $('#username').val(),
-        password = $('#password').val();
-        id = 1;
-        console.log(file);
-        
-        this.users.file_name = file;
-        this.users.pass     = password;
-        this.users.id       = id;
 
-    $.ajax({
-      type: 'POST',
-      url: "/setData",
-      data: this.users 
-    }).done(function (data){
-      console.log(data);
+    var doc = {
+      name: $('#username').val(),
+      pass: $('#password').val(),
+      title: "Hola",
+      content: "Ingrese aqui su texto"
+    }
+
+    var name = doc.name;
+    var self = this;
+
+    this.getFile(name, function(file){
+      if(file){
+        var f = JSON.parse(file);
+        if(doc.pass == f.pass){
+          window.location.pathname = '/edit/'+f.name
+        };
+      }else{
+        self.createFile(doc);
+      }
     });
-
-    window.location.pathname = '/edit/'+id
   }
 })
