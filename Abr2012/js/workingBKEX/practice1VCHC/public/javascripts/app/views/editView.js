@@ -13,15 +13,21 @@ Editty.View.Edit = Backbone.View.extend({
   
   initialize: function(){
     this.info = {};
+    self = this;
     $('.nav').append('<li><a>'+window.location.href+'</a></li>');
     this.countingwords();
     this.id = 1;
     this.render();
+    $(document).keydown(function(event){
+      if (event.which == 83 && event.ctrlKey){
+        event.preventDefault();
+        self.settingData();  
+      }
+    });
   },
 
   render: function(){
       var self = this;
-      console.log('Here');
       $.ajax({
         type: 'POST',
         url:  '/getData',
@@ -77,7 +83,6 @@ Editty.View.Edit = Backbone.View.extend({
       $("#bodytext").html($('#content input').val());
       this.countingwords();
       this.settingData();
-      this.prev
     }
   },
 
@@ -101,6 +106,7 @@ Editty.View.Edit = Backbone.View.extend({
     }).done(function(data){
       console.log(data);
     });
-  },
+  }
 
 });
+
