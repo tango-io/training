@@ -24,6 +24,7 @@ Editty.View.Edit = Backbone.View.extend({
         self.settingData();  
       }
     });
+    this.countingwords();
   },
 
   render: function(){
