@@ -1,8 +1,12 @@
-h1= title
 != partial('partials/errormsj')
-p Welcome to #{title}, publish a beatiful page in seconds.
-p Page Name:  
-  input(id="filename")
-p Paswoord:  
-  input(id="pass", type="password")
-input#publish(type="button", class="btn btn-primary btn-large", value='Publish your page!')
+div#center
+  div#edittytitle
+    h1= title
+    p Welcome to #{title}, publish a beatiful page in seconds.
+  div#namefield
+    p Page Name: 
+    input(id="filename")
+  div#passfield
+    p Paswoord:  
+    input(id="pass", type="password")
+  input#publish(type="button", class="btn btn-primary btn-large", value='Publish your page!')

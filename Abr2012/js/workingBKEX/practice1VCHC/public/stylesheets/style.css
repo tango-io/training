@@ -1,8 +1,24 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+#center {
+  margin: auto;
+  width: 35%;
+  border: 1px dotted;
+  margin-top: 12%;
 }
-
-a {
-  color: #00B7FF;
+#passfield {
+  padding-left: 53%;
+  padding-right: 50%;
+  margin-bottom: -5px;
+  margin-top: -71px;
+}
+#edittytitle {
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#publish {
+  margin-left: 36%;
+}
+#filename,
+#pass {
+  height: 27px;
 }
