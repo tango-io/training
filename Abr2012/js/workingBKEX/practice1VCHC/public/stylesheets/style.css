@@ -1,14 +1,18 @@
 #center {
   margin: auto;
   width: 35%;
-  border: 1px dotted;
+  border: 3px dotted red;
   margin-top: 12%;
+  padding-left: 36px;
 }
 #passfield {
   padding-left: 53%;
   padding-right: 50%;
   margin-bottom: -5px;
   margin-top: -71px;
+}
+#passfield p {
+  margin-left: 80px;
 }
 #edittytitle {
   text-align: center;
@@ -17,8 +21,15 @@
 }
 #publish {
   margin-left: 36%;
+  margin-bottom: 10px;
 }
 #filename,
 #pass {
   height: 27px;
+}
+#namefield p {
+  margin-left: 13%;
+}
+.row-fluid .row-fluid {
+  margin-top: 56px;
 }

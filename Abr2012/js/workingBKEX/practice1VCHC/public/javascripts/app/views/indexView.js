@@ -16,20 +16,17 @@ Editty.View.Index = Backbone.View.extend({
     e.preventDefault();
     if (($('#filename').val() != '') && ($('#pass').val() != '')){
       var filename = $('#filename').val(),
-      password = $('#pass').val();
+          password = $('#pass').val(),
+          id = 1;
 
-      id = 1;
-      this.container.id = id;
-      this.container.fnames = filename;
-      this.container.passw = password;
-
-      $.ajax({
-        type: 'POST',
-        url: '/setData',
-        data: this.container
-      }).done(function(data){
-        console.log(data);
-      });
+      var container = {
+        id:       id,
+        fnames:   filename,
+        passw:    password,
+        title:    "Put your title here",
+        content:  "Click to write your file..."
+      }
+      this.setData(container);
 
       window.location.pathname = "/edit/"+id
     }
@@ -37,6 +34,17 @@ Editty.View.Index = Backbone.View.extend({
       $('#modalError').modal('show');
     }
   },
+  
+  setData: function(container){
+    $.ajax({
+      type: 'POST',
+      url: '/setData',
+      data: container
+    }).done(function(data){
+      console.log(data);
+    });
+  },
+
 
 });
 
