@@ -35,6 +35,8 @@ Editty.View.Index = Backbone.View.extend({
 
   edit: function(e){
     e.preventDefault();
+    self =this;
+    var useraux={};
     if (($('#username').val() === '') || ($('#password').val()=== '')){
       alert('No puedes dejar los campos vacios');
     }
@@ -43,17 +45,23 @@ Editty.View.Index = Backbone.View.extend({
       name: $('#username').val(),
       pass: $('#password').val(),
       title: "Hola",
-      content: "Ingrese aqui su texto"
+      content: "Ingrese aqui su texto",
+      flag: false
     }
 
     var name = doc.name;
-    var self = this;
-
     this.getFile(name, function(file){
       if(file){
         var f = JSON.parse(file);
         if(doc.pass == f.pass){
-          window.location.pathname = '/edit/'+f.name
+          f.flag = true;
+          $.ajax({
+            type: 'POST',
+            url: "/setData",
+            data: f 
+          }).done(function (data){
+            window.location.pathname = 'edit/'+f.name;
+          });
         };
       }else{
         self.createFile(doc);

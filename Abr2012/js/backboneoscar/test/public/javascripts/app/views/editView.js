@@ -33,8 +33,22 @@ Editty.View.Edit = Backbone.View.extend({
       }).done(function (data){
         var users = JSON.parse(data);
           self.user2 = users; 
-          $('#titulo').text(users.title);
-          $('#main_text').text(users.content);
+          if(users.flag=== "true"){
+            console.log(users);
+            $('#titulo').text(users.title);
+            $('#main_text').text(users.content);
+            users.flag = false;
+            $.ajax({
+              type: 'POST',
+              url: "/setData",
+              data: self.user2 
+            }).done(function (data){
+              console.log(data);
+            });
+          }else{
+            console.log(data.flag);
+            window.location.pathname = ""
+          }
       });
   },
 

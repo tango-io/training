@@ -39,7 +39,6 @@ app.get ('/show/:id',routes.show);
 
 app.post('/setData', function(req, res){
   var data = req.body;
-
   redis.set(data.name, JSON.stringify(data), redis.print);
   res.send({
     name: data.name,
