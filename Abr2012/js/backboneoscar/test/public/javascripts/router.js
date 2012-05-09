@@ -18,6 +18,6 @@ Editty.Router = Backbone.Router.extend({
     var edit = new Editty.View.Edit();
   },
   show: function(id){
-    var show = new Editty.View.Show();
+    var show = new Editty.View.Show(id);
   },
 })

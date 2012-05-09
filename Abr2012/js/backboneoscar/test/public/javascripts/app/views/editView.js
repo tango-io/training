@@ -16,26 +16,26 @@ Editty.View.Edit = Backbone.View.extend({
   },
 
   initialize: function(){
-    var self =this
-    this.user2= {};
-    $('.nav').append('<li id="url"><a>'+window.location.href+'</a></li>');
-    var cont = $('#main_text').text();
-    $('#numChar').text('characters: '+cont.length);
+      var self =this
+      this.user2= {};
+      $('.nav').append('<li id="url"><a>'+window.location.href+'</a></li>');
+      var cont = $('#main_text').text();
+      $('#numChar').text('characters: '+cont.length);
     
-    this.txt = $('#main_text').text();
-    this.arr = this.txt.split(' ');
-    $('#numWord').text('Words: '+ this.arr.length);
-    $.ajax({
-      type: 'POST',
-      url: "/getData",
-      data: {id:1} 
-    }).done(function (data){
-      var users = JSON.parse(data);
+      this.txt = $('#main_text').text();
+      this.arr = this.txt.split(' ');
+      $('#numWord').text('Words: '+ this.arr.length);
+      var idname = $('.brand').text();
+      $.ajax({
+        type: 'POST',
+        url: "/getData",
+        data: {name:idname} 
+      }).done(function (data){
+        var users = JSON.parse(data);
           self.user2 = users; 
           $('#titulo').text(users.title);
-          $('#main_text').text(users.contenText);
-    });
-
+          $('#main_text').text(users.content);
+      });
   },
 
   counter:function(){
@@ -70,7 +70,7 @@ Editty.View.Edit = Backbone.View.extend({
      $('#main_text').text(aux4);
      this.wordCounter();
 
-     self.user2.contenText = aux4;
+     self.user2.content = aux4;
      $.ajax({
       type: 'POST',
       url: "/setData",

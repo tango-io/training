@@ -35,7 +35,10 @@ Editty.View.Index = Backbone.View.extend({
 
   edit: function(e){
     e.preventDefault();
-
+    if (($('#username').val() === '') || ($('#password').val()=== '')){
+      alert('No puedes dejar los campos vacios');
+    }
+    else{
     var doc = {
       name: $('#username').val(),
       pass: $('#password').val(),
@@ -56,5 +59,6 @@ Editty.View.Index = Backbone.View.extend({
         self.createFile(doc);
       }
     });
+  }
   }
 })
