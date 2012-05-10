@@ -6,7 +6,6 @@ Editty.View.Index = Backbone.View.extend({
   },
 
   initialize: function(){
-    this.container = {id: 0, fnames: "", passw: "", title:"Put your title here", content:"Click to write your file..."};
     this.error = false;
     $('#modalError').modal();
     $('#modalError').modal('hide');
@@ -23,11 +22,12 @@ Editty.View.Index = Backbone.View.extend({
       this.getIndex(function(index){
 
             var container = {
-              id:       (+index)+1,
-              fnames:   filename,
-              passw:    password,
-              title:    "Put your title here",
-              content:  "Click to write your file..."
+              id:           (+index)+1,
+              fnames:       filename,
+              passw:        password,
+              title:        "Put your title here",
+              content:      "Click to write your file...",
+              normalacces:  true
             }
 
         self.updateIndex(container.id);
