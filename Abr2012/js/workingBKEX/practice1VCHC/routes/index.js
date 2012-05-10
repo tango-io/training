@@ -11,8 +11,8 @@ exports.index = function(req, res){
  */
 
 exports.edit = function(req, res){
-  var id = req.params.id;
-  redis.get(id, function(err, data){
+  var fnames = req.params.fnames;
+  redis.get(fnames, function(err, data){
     console.log('Data arrive:');
     console.log(data);
     res.render('edit', JSON.parse(data))

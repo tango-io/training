@@ -13,13 +13,12 @@ Editty.View.Edit = Backbone.View.extend({
   
   },
   
-  initialize: function(){
+  initialize: function(id){
     this.info = {};
     self = this;
     $('#root').append('<a>' + window.location.href + '</a>');
     this.countingwords();
-    this.id = 1;
-    this.render();
+    this.render(id);
     $(document).keydown(function(event){
       if (event.which == 83 && event.ctrlKey){
         event.preventDefault();
@@ -29,12 +28,12 @@ Editty.View.Edit = Backbone.View.extend({
     this.countingwords();
   },
 
-  render: function(){
+  render: function(id){
       var self = this;
       $.ajax({
         type: 'POST',
         url:  '/getData',
-        data: {id: 1}
+        data: {fnames: id}
       }).done(function(data){
         var d = JSON.parse(data);
         self.info = d;
