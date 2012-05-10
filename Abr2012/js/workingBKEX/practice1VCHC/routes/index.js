@@ -13,6 +13,7 @@ exports.index = function(req, res){
 exports.edit = function(req, res){
   var id = req.params.id;
   redis.get(id, function(err, data){
+    console.log('Data arrive:');
     console.log(data);
     res.render('edit', JSON.parse(data))
   });

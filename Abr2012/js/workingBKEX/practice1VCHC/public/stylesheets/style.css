@@ -33,3 +33,12 @@
 .row-fluid .row-fluid {
   margin-top: 56px;
 }
+#title {
+  text-align: center;
+}
+#content {
+  margin: 1% 0 40% 26%;
+}
+footer {
+  margin-left: 10px;
+}

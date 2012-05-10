@@ -17,34 +17,63 @@ Editty.View.Index = Backbone.View.extend({
     if (($('#filename').val() != '') && ($('#pass').val() != '')){
       var filename = $('#filename').val(),
           password = $('#pass').val(),
-          id = 1;
+          self = this;
 
-      var container = {
-        id:       id,
-        fnames:   filename,
-        passw:    password,
-        title:    "Put your title here",
-        content:  "Click to write your file..."
-      }
-      this.setData(container);
 
-      window.location.pathname = "/edit/"+id
+      this.getIndex(function(index){
+
+            var container = {
+              id:       (+index)+1,
+              fnames:   filename,
+              passw:    password,
+              title:    "Put your title here",
+              content:  "Click to write your file..."
+            }
+
+        self.updateIndex(container.id);
+        self.setData(container, function(data){
+          console.log('saved successfully');
+          window.location.pathname = "/edit/"+container.id
+        });
+      });
     }
     else {
       $('#modalError').modal('show');
     }
   },
-  
-  setData: function(container){
+
+
+//<~ Ajax's Petitions ~>
+
+  setData: function(container, cb){
     $.ajax({
       type: 'POST',
       url: '/setData',
       data: container
     }).done(function(data){
-      console.log(data);
+      return cb(data);
     });
   },
 
+  getIndex: function(cb){
+    $.ajax({
+      type:   'POST',
+      url:    '/getIndex',
+      data: true
+    }).done(function(data){
+     return cb(data);
+    });
+  },
+
+  updateIndex: function(id){
+    $.ajax({
+      type:   'POST',
+      url:    '/updateIndex',
+      data:   {id: id}
+    }).done(function(data){
+      
+    });
+  }
 
 });
 
