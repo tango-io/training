@@ -96,10 +96,9 @@ Editty.View.Edit = Backbone.View.extend({
   },
 
   settingData: function(){
-    console.log(this.info);
     this.info.title = $('h1').text();
     this.info.content = $('#bodytext').text();
-    console.log('New');
+    console.log('--- New ---');
     console.log(this.info);
     $.ajax({
       type: 'POST',
@@ -115,7 +114,7 @@ Editty.View.Edit = Backbone.View.extend({
   },
 
   gotoshow: function(){
-    window.location.pathname = "/show/"+this.id;
+    window.location.pathname = "/show/"+this.info.fnames;
   }
 
 });

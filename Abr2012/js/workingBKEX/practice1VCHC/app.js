@@ -39,30 +39,20 @@ app.configure('development', function(){
   
   app.post('/setData', function(req, res){
     var data = JSON.stringify(req.body);
-    var id = req.body.id;
+    var fnames = req.body.fnames;
     console.log('Data sended:');
     console.log(data);
-    redis.set(id, data, redis.print);
+    redis.set(fnames, data, redis.print);
     res.send(true);
   });
 
   app.post('/getData', function(req, res){
-    var id = req.body.id;
-    redis.get(id, function(err, data){
+    var fnames = req.body.fnames;
+    redis.get(fnames, function(err, data){
       res.send(data);
     });
   });
   
-  app.post('/getIndex', function(req, res){
-    redis.get('index', function(err,data){
-      res.send(data)
-    });
-  });
-
-  app.post('/updateIndex', function(req, res){
-    var id = req.body.id;
-    redis.set('index', id, redis.print)
-  });
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
