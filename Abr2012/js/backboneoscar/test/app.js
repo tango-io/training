@@ -33,18 +33,37 @@ app.configure('production', function(){
 
 // Routes
 
+var authenticate = function(req, res, next){
+  var id = req.params.id;
+  redis.get (id, function(err, data){
+    var d = (JSON.parse(data));
+
+    if(d.flag === 'false'){
+      res.redirect('');
+    }
+
+    if(d.flag === 'true'){
+      next();
+    }
+
+  });
+
+};
+
 app.get('/', routes.index);
-app.get ('/edit/:id',routes.edit);
+app.get ('/edit/:id',authenticate, routes.edit);
 app.get ('/show/:id',routes.show);
 
 app.post('/setData', function(req, res){
   var data = req.body;
   redis.set(data.name, JSON.stringify(data), redis.print);
   res.send({
+
     name: data.name,
     success: true
   });
 });
+
 
 app.post('/getData', function(req, res){
   var d = req.body;

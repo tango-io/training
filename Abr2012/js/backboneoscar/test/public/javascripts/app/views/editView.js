@@ -7,54 +7,38 @@ Editty.View.Edit = Backbone.View.extend({
     'input #titleChange'       : 'test',
     'blur #titleChange'        : 'focusOutHead',
     'blur #contenChange'       : 'focusOutCont',
-    'keydown #contenChange' : 'counter'
+    'keydown #contenChange'    : 'counterLetter'
 
   },
   
   test: function(){
-    console.log('s');
   },
 
-  initialize: function(){
+  initialize: function(id){
       var self =this
       this.user2= {};
       $('.nav').append('<li id="url"><a>'+window.location.href+'</a></li>');
-      var cont = $('#main_text').text();
-      $('#numChar').text('characters: '+cont.length);
-    
-      this.txt = $('#main_text').text();
-      this.arr = this.txt.split(' ');
-      $('#numWord').text('Words: '+ this.arr.length);
-      var idname = $('.brand').text();
+      this.wordCounter();
       $.ajax({
         type: 'POST',
         url: "/getData",
-        data: {name:idname} 
+        data: {name:id} 
       }).done(function (data){
         var users = JSON.parse(data);
           self.user2 = users; 
-          if(users.flag=== "true"){
-            console.log(users);
-            $('#titulo').text(users.title);
-            $('#main_text').text(users.content);
-            users.flag = false;
-            $.ajax({
-              type: 'POST',
-              url: "/setData",
-              data: self.user2 
-            }).done(function (data){
-              console.log(data);
-            });
-          }else{
-            console.log(data.flag);
-            window.location.pathname = ""
-          }
+          console.log(data);
+          $('#main_text').text(self.user2.content);
+          $('#titulo').text(self.user2.title);
+      var cont = $('#main_text').text();
+      $('#numChar').text('characters: '+cont.length);
+
       });
   },
 
-  counter:function(){
-    var cont = $('#contenChange').val();
-    $('#numChar').text('characters: '+cont.length);
+  counterLetter:function(){
+    var cont = $('#contenChange').val(),
+      add=(cont.length) + 1;
+    $('#numChar').text('characters: '+ add);
   
   },
 

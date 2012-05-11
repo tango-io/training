@@ -26,7 +26,9 @@ Editty.View.Index = Backbone.View.extend({
     }).done(function(data){
       if(data.success){
         console.log('Done');
-        window.location.pathname = '/edit/'+data.name
+        //window.location.pathname = '/edit/'+data.name
+        self.edit();
+
       }
     }).error(function(err){
       alert(JSON.stringify(err));
