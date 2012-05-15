@@ -25,10 +25,7 @@ Editty.View.Index = Backbone.View.extend({
       data: file
     }).done(function(data){
       if(data.success){
-        console.log('Done');
-        //window.location.pathname = '/edit/'+data.name
         self.edit();
-
       }
     }).error(function(err){
       alert(JSON.stringify(err));
@@ -38,7 +35,6 @@ Editty.View.Index = Backbone.View.extend({
   edit: function(e){
     e.preventDefault();
     self =this;
-    var useraux={};
     if (($('#username').val() === '') || ($('#password').val()=== '')){
       alert('No puedes dejar los campos vacios');
     }

@@ -16,6 +16,10 @@ exports.edit = function(req, res){
 
 };
 
+exports.login = function(req, res){
+  res.render('login', { title: 'Editty' })
+};
+
 exports.show = function(req, res){
   res.render('show', { title: 'Editty' })
 };

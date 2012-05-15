@@ -39,7 +39,7 @@ var authenticate = function(req, res, next){
     var d = (JSON.parse(data));
 
     if(d.flag === 'false'){
-      res.redirect('');
+      res.redirect('/login/'+id);
     }
 
     if(d.flag === 'true'){
@@ -52,6 +52,7 @@ var authenticate = function(req, res, next){
 
 app.get('/', routes.index);
 app.get ('/edit/:id',authenticate, routes.edit);
+app.get('/login/:id', routes.login);
 app.get ('/show/:id',routes.show);
 
 app.post('/setData', function(req, res){
