@@ -1,6 +1,6 @@
 !SLIDE
 
-# Testing Apps Trainig
+# Testing Apps Training
 ## June 2012
 
 !SLIDE bullets incremental
