@@ -1,8 +1,9 @@
 {
   "name": "Basics",
   "sections": [
-    { "section" : "see" },
-    { "section" : "judge" },
-    { "section" : "act" }
+    { "section" : "instroduction" },
+    { "section" : "testing-apps" },
+    { "section" : "rspec" },
+    { "section" : "jasmine" }
   ]
 }
