@@ -20,5 +20,5 @@ describe Calculator do
 end
 
 describe 'a string' do
-  it { should == 'a string' }
+  it{ should eq 'a string' }
 end

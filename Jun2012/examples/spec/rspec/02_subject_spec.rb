@@ -15,15 +15,23 @@ end
 
 describe PersonDecorator do
 
-  subject{ PersonDecorator.new(person)}
+  let(:image){ double(:image, url: 'www.daniel.com/avatar.jpg') }
+  let(:person){
+    double(:person,
+      first_name: 'Daniel',
+      last_name: 'Gaytan',
+      image: image
+    )
+  }
+
+  let(:person_decorator){ PersonDecorator.new(person) }
 
   describe '#for_main_card' do
-    it 'should have a display name' do
-      subject.for_main_card.should have_key(:display_name)
-    end
 
-    it 'should have a photo url' do
-      subject.for_main_card.should have_key(:photo_url)
-    end
+    subject { person_decorator.for_main_card }
+
+    its([:display_name]){ should == 'Daniel Gaytan' }
+    its([:photo_url]){ should == 'www.daniel.com/avatar.jpg' }
+
   end
 end
