@@ -166,7 +166,3 @@ General reusable solution to a commonly occurring problem within a given context
 * How does a car work?
 * How do they test a car works perfectly?
 * Talk to you next session
-
-!SLIDE
-
-# Thanks
