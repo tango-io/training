@@ -15,11 +15,11 @@ class QuadraticEquationSolver
     [x1, x2]
   end
 
+  private
+
   def get_literals
     @a, @b, @c = str.split(/x\^2|x/).map &:to_i
   end
-
-  private
 
   def square_part
     (b**2 - 4*a*c)**(1/2.0)
@@ -37,7 +37,8 @@ class QuadraticEquationSolver
 end
 
 describe QuadraticEquationSolver do
-  let!(:quadratic_equation_solver){ QuadraticEquationSolver.new(*input) }
+
+  subject{ QuadraticEquationSolver.new(*input).solve }
 
   context 'when it is a real solution' do
 
@@ -47,7 +48,7 @@ describe QuadraticEquationSolver do
       let(:input){ [1, 3, 2] }
 
       it 'should solve the equation' do
-        quadratic_equation_solver.solve.should =~ [-1, -2]
+        should =~ [-1, -2]
       end
     end
 
@@ -56,12 +57,8 @@ describe QuadraticEquationSolver do
       let(:input){ '12x^2 + 16x - 3' }
       # (2x + 3)(6x - 1) = 12x^2 + 16x -3
 
-      it 'should return literals' do
-        quadratic_equation_solver.get_literals.should == [12,16,-3]
-      end
-
       it 'should solve the equation' do
-        quadratic_equation_solver.solve.should =~ [-(3/2.0), 1/6.0]
+        should =~ [-(3/2.0), 1/6.0]
       end
     end
   end
@@ -71,7 +68,7 @@ describe QuadraticEquationSolver do
     let(:input){ [4, 3, 2] }
 
     it 'should raise an error' do
-      expect{ quadratic_equation_solver.solve }.should raise_error Exception
+      expect{ subject }.should raise_error Exception
     end
   end
 end
