@@ -37,42 +37,41 @@ class QuadraticEquationSolver
 end
 
 describe QuadraticEquationSolver do
+  let!(:quadratic_equation_solver){ QuadraticEquationSolver.new(*input) }
+
   context 'when it is a real solution' do
+
     # (x+1)(x+2) = x^2 + 3x + 2
     describe 'given the values for A, B and C' do
-      before do
-        @quadratic_equation_solver = QuadraticEquationSolver.new(1, 3, 2)
-      end
+
+      let(:input){ [1, 3, 2] }
 
       it 'should solve the equation' do
-        @quadratic_equation_solver.solve.should =~ [-1, -2]
+        quadratic_equation_solver.solve.should =~ [-1, -2]
       end
     end
 
     describe 'given a string with the equation' do
+
+      let(:input){ '12x^2 + 16x - 3' }
       # (2x + 3)(6x - 1) = 12x^2 + 16x -3
-      before do
-        @quadratic_equation_solver = QuadraticEquationSolver.new('12x^2 + 16x - 3')
-      end
 
       it 'should return literals' do
-        @quadratic_equation_solver.get_literals.should == [12,16,-3]
+        quadratic_equation_solver.get_literals.should == [12,16,-3]
       end
 
       it 'should solve the equation' do
-        @quadratic_equation_solver.solve.should =~ [-(3/2.0), 1/6.0]
+        quadratic_equation_solver.solve.should =~ [-(3/2.0), 1/6.0]
       end
     end
   end
 
   context 'when it is an imaginary solution' do
     # 4x^2 + 3x + 2
-    before do
-      @quadratic_equation_solver = QuadraticEquationSolver.new(4, 3, 2)
-    end
+    let(:input){ [4, 3, 2] }
 
     it 'should raise an error' do
-      expect{ @quadratic_equation_solver.solve }.should raise_error Exception
+      expect{ quadratic_equation_solver.solve }.should raise_error Exception
     end
   end
 end
