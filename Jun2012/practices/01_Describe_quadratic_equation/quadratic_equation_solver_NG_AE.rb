@@ -3,7 +3,7 @@ class QuadraticEquationSolver
 
   def initialize(*options)
     if options.length == 1
-      parseString(options[0]);
+      parseString(options[0])
     else
       @a, @b, @c = options[0], options[1], options[2]
     end
@@ -57,12 +57,13 @@ describe QuadraticEquationSolver do
     end
 
     describe 'given a string with the equation' do
+      # (x+3)(x+3) = x^2 + 6x + 9
       before do
-        @quadratic_equation_solver = QuadraticEquationSolver.new('x^2 + 3x + 2')
+        @quadratic_equation_solver = QuadraticEquationSolver.new('x^2 + 6x + 9')
       end
 
       it 'should solve the equation' do
-        @quadratic_equation_solver.solve.should =~ [-1, -2]
+        @quadratic_equation_solver.solve.should =~ [-3, -3]
       end
     end
   end
