@@ -63,7 +63,7 @@ describe QuadraticEquationSolver do
       end
 
       it 'should return literals' do
-        @quadratic_equation_solver.get_literals.sould = [1,3,2]
+        @quadratic_equation_solver.get_literals.should = [1, 3, 2]
       end
       
       it 'should solve the equation' do
