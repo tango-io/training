@@ -1,9 +1,10 @@
 class QuadraticEquationSolver
-  attr_reader :a, :b, :c
+  attr_reader :a, :b, :c, :str
 
   def initialize(*options)
     if options.length == 1
-      @str=options[0]
+      @str = options[0].delete(' ')
+      get_literals
     else
       @a, @b, @c = options[0], options[1], options[2]
     end
@@ -14,10 +15,14 @@ class QuadraticEquationSolver
     [x1, x2]
   end
 
+  def get_literals
+    @a, @b, @c = str.split(/x\^2|x/).map &:to_i
+  end
+
   private
 
   def square_part
-    (b**2 - 4*a*c)**(1/2.to_f)
+    (b**2 - 4*a*c)**(1/2.0)
   end
 
   def x1
@@ -28,20 +33,7 @@ class QuadraticEquationSolver
   def x2
     (-1*b - square_part) / 2*a.to_f
   end
-  
-  def get_literals
-    eq_string = str
-    eq_string.delete!(' ')
 
-    #x^2+3x+x
-    #This remove the innecesary chars
-    eq_string.gsub!(/\s|x|\^2/,"").split(/\+|-/)
-
-    #This replace empty literal by 1str.map {|i| i.empty? ? "1" : i}
-    eq_string.map! {|i| i.empty? ? 1 : i.to_i}
-    @a, @b, @c = eq_string[0], eq_string[1], eq_string[2]
-    eq_string  
-  end
 end
 
 describe QuadraticEquationSolver do
@@ -58,16 +50,17 @@ describe QuadraticEquationSolver do
     end
 
     describe 'given a string with the equation' do
+      # (2x + 3)(6x - 1) = 12x^2 + 16x -3
       before do
-        @quadratic_equation_solver = QuadraticEquationSolver.new('x^2 + 3x + 2')
+        @quadratic_equation_solver = QuadraticEquationSolver.new('12x^2 + 16x - 3')
       end
 
       it 'should return literals' do
-        @quadratic_equation_solver.get_literals.sould = [1,3,2]
+        @quadratic_equation_solver.get_literals.should == [12,16,-3]
       end
-      
+
       it 'should solve the equation' do
-        @quadratic_equation_solver.solve.should =~ [-1, -2]
+        @quadratic_equation_solver.solve.should =~ [-(3/2.0), 1/6.0]
       end
     end
   end
