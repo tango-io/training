@@ -11,7 +11,7 @@
 #   - dist/**/*.js
 #
 src_files:
-    - public/javascripts/compiled/**/*.js
+    - public/javascripts/**/*.js
 
 # stylesheets
 #
@@ -37,6 +37,7 @@ stylesheets:
 #   - helpers/**/*.js
 #
 helpers:
+  - compiled/helpers/**/*.js
 
 # spec_files
 #
@@ -71,4 +72,4 @@ src_dir:
 # spec_dir: spec/javascripts
 #
 spec_dir:
-  spec/javascripts/compiled
+  spec/javascripts
