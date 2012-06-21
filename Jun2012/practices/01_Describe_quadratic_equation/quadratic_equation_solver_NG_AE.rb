@@ -11,35 +11,37 @@ class QuadraticEquationSolver
 
   def solve
     raise Exception unless square_part.real?
-    [x1, x2]
+    [x1,x2]
   end
 
   private
 
   def parseString string
-    values = string.scan(/\d[x|y]|\d$/)
+     values = string.gsub(/\s/,"").scan(/^\d+|\+|-\d+[x|y]|\+|-\d+$/)
+     puts "#{values}"
     if values.count < 3
-      @a = 1
-      @b = values[0][0].to_i
-      @c = values[1][0].to_i
+       @a = 1
+       @b = values[0].to_i
+       @c = values[1].to_i
     else
-      @a = values[0][0].to_i
-      @b = values[1][0].to_i
-      @c = values[2][0].to_i
+       @a = values[0].to_i
+       @b = values[1].to_i
+       @c = values[2].to_i
     end
   end
 
+
   def square_part
-    (b**2 - 4*a*c)**(1/2.to_f)
+    ((b**2) - (4*a*c))**(1/2.to_f)
   end
 
   def x1
-    (-1*b + square_part) / 2*a.to_f
+    ((-1*b + square_part) / 2*a.to_f)
 
   end
 
   def x2
-    (-1*b - square_part) / 2*a.to_f
+    ((-1*b - square_part) / 2*a.to_f)
   end
 end
 
@@ -58,11 +60,12 @@ describe QuadraticEquationSolver do
 
     describe 'given a string with the equation' do
       before do
-        @quadratic_equation_solver = QuadraticEquationSolver.new('x^2 + 3x + 2')
+        #@quadratic_equation_solver = QuadraticEquationSolver.new('x^2 + 3x + 2')
+        @quadratic_equation_solver = QuadraticEquationSolver.new('12x^2 - 16x - 3')
       end
 
       it 'should solve the equation' do
-        @quadratic_equation_solver.solve.should =~ [-1, -2]
+        @quadratic_equation_solver.solve.should =~ [1.5,-0.166666667]
       end
     end
   end
