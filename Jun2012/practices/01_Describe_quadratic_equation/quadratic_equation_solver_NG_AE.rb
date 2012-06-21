@@ -31,16 +31,15 @@ class QuadraticEquationSolver
 
 
   def square_part
-    ((b**2) - (4*a*c))**(1/2.to_f).to_f
+    Math.sqrt ((b**2) - (4*a*c))
   end
 
   def x1
-    ((-1*b + square_part) / 2*a.to_f).to_f
-
+    ((-1*b + square_part) / (2*a.to_f)).to_f
   end
 
   def x2
-    ((-1*b - square_part) / 2*a.to_f).to_f
+    ((-1*b - square_part) / (2*a.to_f)).to_f
   end
 end
 
@@ -64,7 +63,7 @@ describe QuadraticEquationSolver do
       end
 
       it 'should solve the equation' do
-        @quadratic_equation_solver.solve.should =~ [1.5,-0.166666667]
+        @quadratic_equation_solver.solve.should =~ [1.5,-1/6.0]
       end
     end
   end
