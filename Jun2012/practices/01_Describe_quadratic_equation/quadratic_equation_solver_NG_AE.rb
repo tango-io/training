@@ -18,7 +18,6 @@ class QuadraticEquationSolver
 
   def parseString string
      values = string.gsub(/\s/,"").scan(/^\d+|\+|-\d+[x|y]|\+|-\d+$/)
-     puts "#{values}"
     if values.count < 3
        @a = 1
        @b = values[0].to_i
@@ -32,16 +31,16 @@ class QuadraticEquationSolver
 
 
   def square_part
-    ((b**2) - (4*a*c))**(1/2.to_f)
+    ((b**2) - (4*a*c))**(1/2.to_f).to_f
   end
 
   def x1
-    ((-1*b + square_part) / 2*a.to_f)
+    ((-1*b + square_part) / 2*a.to_f).to_f
 
   end
 
   def x2
-    ((-1*b - square_part) / 2*a.to_f)
+    ((-1*b - square_part) / 2*a.to_f).to_f
   end
 end
 
