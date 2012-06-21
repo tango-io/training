@@ -26,12 +26,11 @@ class QuadraticEquationSolver
   end
 
   def x1
-    (-1*b + square_part) / 2*a.to_f
-
+    (-b + square_part) / (2.0*a)
   end
 
   def x2
-    (-1*b - square_part) / 2*a.to_f
+    (-b - square_part) / (2.0*a)
   end
 
 end
@@ -53,12 +52,11 @@ describe QuadraticEquationSolver do
     end
 
     describe 'given a string with the equation' do
-
       let(:input){ '12x^2 + 16x - 3' }
       # (2x + 3)(6x - 1) = 12x^2 + 16x -3
 
       it 'should solve the equation' do
-        should =~ [-(3/2.0), 1/6.0]
+        should =~ [(1/6.0), -1.5]
       end
     end
   end
