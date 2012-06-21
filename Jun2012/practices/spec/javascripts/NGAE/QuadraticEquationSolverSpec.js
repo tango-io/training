@@ -1,6 +1,6 @@
 describe("Quadratic Equation Solver", function(){
 
-  describe("When it is real solution", function(){
+  describe("when it is real solution", function(){
     // (x+1)(x+2) = x^2 + 3x + 2
     describe("given the values for A, B and C",function(){
 
@@ -34,7 +34,7 @@ describe("Quadratic Equation Solver", function(){
       this.solver = new QuadraticEquationSolver(4, 3, 2) || {};
     });
 
-    it("Should raise an errer", function(){
+    it("should raise an errer", function(){
       expect(this.solver).toBe('Error');
     });
 
